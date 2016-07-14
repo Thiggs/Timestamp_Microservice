@@ -18,7 +18,7 @@ app.get("/", function (req, res){
     res.send();
     }
     else{
-        console.log("unix: " + null + ", natural: " + null);
+        res.write("unix: " + null + ", natural: " + null);
         res.send();
     }
 });
