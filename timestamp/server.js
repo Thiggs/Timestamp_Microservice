@@ -4,22 +4,22 @@ var app = express();
 var date;
 var unix;
 
-app.get("/", function (req, res){
-    if(isNaN(req)){
-        date = new Date(req);   
+app.get("/:input", function (req, res){
+
+    if(isNaN(req.params.input)){
+        date = new Date(req.params.input);   
         unix = date.getTime() / 1000;
     }
+    
     else {
-        unix = req;
-        date = new Date(unix);
+        unix = req.params.input;
+        date = new Date(unix*1000);
     }
     if(date && unix){
-    res.write("unix: " + unix + ", natural: " + date);
-    res.send();
+    res.send({unix: unix, natural: date});
     }
     else{
-        res.write("unix: " + null + ", natural: " + null);
-        res.send();
+        res.send({unix: null, natural: null});
     }
 });
 
